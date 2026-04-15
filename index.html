@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invitación Interactiva • XV Años • Jackeline Martinez Duron</title>
+  <style>
+    :root{
+      --lav3:#7b5cc7;
+      --lav4:#5a3fb3;
+      --ink:#2b2b2b;
+      --shadow: 0 12px 40px rgba(40, 20, 80, .18);
+      --stroke: rgba(123,92,199,.18);
+      --glass: rgba(255,255,255,.82);
+/* =========================
+   📱 MODO 2 HOJAS EN CELULAR
+   ========================= */
+@media (max-width: 860px){
+
+  /* La tarjeta deja fluir el contenido */
+  .card{
+    min-height: 100vh;
+  }
+
+  /* Cada sección principal ocupa una “hoja” */
+  .content{
+    min-height: 100vh;
+    align-content: start;
+  }
+
+  /* Primera hoja: info + RSVP */
+  #rsvpSection{
+    margin-bottom: 40px;
+  }
+
+  /* Segunda hoja: contador */
+  #countdownSection{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 40px;
+  }
+}
+``
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background: #f3efff;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .wrap{width:min(980px, 100%);}
+
+    .card{
+      position:relative;
+      border-radius:22px;
+      background: transparent; /* el fondo lo aporta frame.png */
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      /* Activa tu marco por default */
+      --frame-url: url('frame.png');
+    }
+
+    /* FRAME OVERLAY (solo imagen) */
+    .frame{
+      position:absolute; inset:0;
+      pointer-events:none;
+      background: none;
+    }
+
+.frame::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image: var(--frame-url);
+  background-repeat:no-repeat;
+  background-position:center top;
+  background-size:cover;
+}
+
+/* 📱 Ajuste móvil: evita que se recorte la corona y las flores */
+@media (max-width: 860px){
+  .frame::before{
+    background-size: contain;
+    background-position: center top;
+  }
+}
+
+    /* Ajuste de márgenes: más “aire” para no invadir las flores */
+    .content{
+     <!-- COLUMNA IZQUIERDA (texto principal) -->
+<div>
+  ...
+  <div class="section">
+    <!-- Fecha / hora / lugar -->
+  </div>
+
+  <!-- BOTONES + CÓDIGO DE VESTIMENTA -->
+  <div class="ctaRow">
+    ...
+  </div>
+
+  <div style="margin-top:12px; text-align:center;">
+    <span class="badge" id="dressCode">
+      Código de vestimenta: Formal
+    </span>
+  </div>
+
+  <!-- ✅ RSVP PRIMERO -->
+  <div class="section" id="rsvpSection" style="margin-top:14px;">
+    ...
+  </div>
+</div>
+
+<!-- ✅ CONTADOR DESPUÉS (2da hoja en móvil) -->
+<div class="countdown" id="countdownSection">
+  ...
+</div>
+``
+    }
+
+    @media (max-width: 980px){
+      .content{padding:56px 54px 48px;}
+    }
+    @media (max-width: 860px){
+      .content{grid-template-columns:1fr; padding:44px 26px 26px;}
+    }
+    @media (max-width: 420px){
+      .content{padding:36px 18px 18px;}
+    }
+
+    .title{
+      text-align:center;
+      margin:0 0 8px;
+      letter-spacing:.12em;
+      color:var(--lav3);
+      font-weight:800;
+    }
+
+    .name{
+      text-align:center;
+      margin:6px 0 12px;
+      font-size: clamp(32px, 4.8vw, 54px);
+      font-family: "Georgia", "Times New Roman", serif;
+      color:var(--lav4);
+      font-weight:650;
+    }
+
+    .rule{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(123,92,199,.35), transparent);
+      margin: 10px auto 0;
+      width:min(360px, 90%);
+    }
+
+    .subtitle{
+      text-align:center;
+      margin:0 0 18px;
+      line-height:1.55;
+      font-size: 15.5px;
+      color: rgba(43,43,43,.92);
+    }
+
+    .section{
+      background: var(--glass);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      padding:16px;
+    }
+
+    .grid2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 520px){
+      .grid2{grid-template-columns:1fr;}
+    }
+
+    .label{
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(43,43,43,.62);
+      margin:0 0 4px;
+    }
+    .value{margin:0; font-size:15.5px; font-weight:650;}
+    .muted{color:rgba(43,43,43,.72); font-weight:520;}
+
+    .ctaRow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+    .btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(123,92,199,.30);
+      background: linear-gradient(180deg, #ffffff, #f6f2ff);
+      color:#3c2a7a;
+      font-weight:800;
+      text-decoration:none;
+      cursor:pointer;
+      transition: transform .06s ease, box-shadow .2s ease;
+      box-shadow: 0 6px 16px rgba(40,20,80,.10);
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow: 0 10px 22px rgba(40,20,80,.14);}
+    .btn.primary{
+      border:0;
+      background: linear-gradient(135deg, #7b5cc7, #b398ff);
+      color:white;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(123,92,199,.10);
+      color:#4b369a;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.06em;
+    }
+
+    .countdown{
+      text-align:center;
+      padding:18px 14px;
+      border-radius:16px;
+      background: linear-gradient(135deg, rgba(123,92,199,.10), rgba(203,183,255,.20));
+      border:1px solid var(--stroke);
+    }
+    .countdown h3{margin:0 0 10px; color:#4b369a;}
+    .timer{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .tbox{
+      min-width:90px;
+      padding:10px 12px;
+      border-radius:14px;
+      background:#fff;
+      border:1px solid var(--stroke);
+    }
+    .tbox .num{font-size:26px; font-weight:900; color:#3f2e86; line-height:1;}
+    .tbox .txt{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(43,43,43,.62); margin-top:6px;}
+
+    .foot{
+      text-align:center;
+      padding:0 18px 18px;
+      color:rgba(43,43,43,.65);
+      font-style:italic;
+    }
+
+    @media print{
+      .ctaRow{display:none;}
+      body{background:#fff;}
+      .section{background:#fff;}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="frame" aria-hidden="true"></div>
+
+      <div class="content">
+        <div>
+          <!-- Corona eliminada: ahora viene dentro de frame.png -->
+          <p class="title">MIS XV AÑOS</p>
+          <p class="name" id="quinceName">Jackeline Martinez Duron</p>
+          <div class="rule" aria-hidden="true"></div>
+          <p class="subtitle">
+            Con la bendición de Dios y el amor de mis padres<br>
+            <strong id="parents">Juan Manuel Martinez Sanchez y Yuvia Magaly Duron Serrano</strong><br>
+            te invitamos a celebrar este día tan especial.
+          </p>
+
+          <div class="section">
+            <div class="grid2">
+              <div>
+                <p class="label">Fecha</p>
+                <p class="value" id="eventDatePretty">Sábado, 4 de julio de 2026</p>
+              </div>
+              <div>
+                <p class="label">Hora</p>
+                <p class="value" id="eventTime">7:30 pm</p>
+              </div>
+              <div>
+                <p class="label">Salón</p>
+                <p class="value" id="venue">Marysol Eventos</p>
+              </div>
+              <div>
+                <p class="label">Dirección</p>
+                <p class="value muted" id="address">Avenida del Realito 745, Colonia La Herradura, C.P. 67140, Guadalupe, Nuevo León, México</p>
+              </div>
+            </div>
+
+            <div class="ctaRow">
+              <a class="btn" id="btnMaps" target="_blank" rel="noopener">
+                <span aria-hidden="true">📍</span>
+                Ver ubicación en Google Maps
+              </a>
+
+              <a class="btn primary" id="btnWhats" target="_blank" rel="noopener">
+                <span aria-hidden="true">✅</span>
+                Confirmar asistencia por WhatsApp
+              </a>
+            </div>
+
+            <div style="margin-top:12px; text-align:center;">
+              <span class="badge" id="dressCode">Código de vestimenta: Formal, Agradecemos Evitar el Color Lila y Rosa</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="countdown">
+            <h3>Falta para el gran día</h3>
+            <div class="timer" aria-live="polite">
+              <div class="tbox"><div class="num" id="d">--</div><div class="txt">Días</div></div>
+              <div class="tbox"><div class="num" id="h">--</div><div class="txt">Horas</div></div>
+              <div class="tbox"><div class="num" id="m">--</div><div class="txt">Min</div></div>
+              <div class="tbox"><div class="num" id="s">--</div><div class="txt">Seg</div></div>
+            </div>
+            <p style="margin:12px 0 0; font-size:12.5px; color:rgba(43,43,43,.65)">
+              Evento: <strong>04/07/2026 • 7:30 pm</strong>
+            </p>
+          </div>
+
+          <div class="section" style="margin-top:14px;">
+            <p class="label">RSVP (WhatsApp)</p>
+            <p class="value"><span id="rsvpName">Confirmaciones</span> · <span class="muted" id="rsvpPhone">8125821142</span></p>
+            <p style="margin:10px 0 0; font-size:13px; color:rgba(43,43,43,.75)">
+              El botón abre WhatsApp con un mensaje pre-escrito y pregunta <strong>cuántos asistentes</strong>. Solo completa y envía.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">“Será un honor contar con tu presencia.”</div>
+    </div>
+  </div>
+
+  <script>
+    const INVITACION = {
+      quinceanera: "Jackeline Martinez Duron",
+      padres: "Juan Manuel Martinez Sanchez y Yuvia Magaly Duron Serrano",
+      salon: "Marysol Eventos",
+      direccion: "Avenida del Realito 745, Colonia La Herradura, C.P. 67140, Guadalupe, Nuevo León, México",
+      fechaISO: "2026-07-04T19:30:00-06:00",
+      mapsQuery: "Avenida del Realito 745, Colonia La Herradura, C.P. 67140, Guadalupe, Nuevo León, México",
+      whatsappNumeroE164: "528125821142",
+      whatsappMensaje: "¡Hola! Confirmo mi asistencia a los XV Años de Jackeline Martinez Duron.\n\nFecha: 4 de julio de 2026\nHora: 7:30 pm\nSalón: Marysol Eventos\n\n¿Cuántos asistentes serán? (por favor indica el total)\nAsistentes: ____\n\nNombre(s): ____\n\nGracias."
+    };
+
+    // Enlace Google Maps
+    const mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(INVITACION.mapsQuery);
+    document.getElementById('btnMaps').href = mapsUrl;
+
+    // Enlace WhatsApp
+    const waUrl = "https://wa.me/" + INVITACION.whatsappNumeroE164 + "?text=" + encodeURIComponent(INVITACION.whatsappMensaje);
+    document.getElementById('btnWhats').href = waUrl;
+
+    // Contador
+    const target = new Date(INVITACION.fechaISO).getTime();
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function tick(){
+      const now = Date.now();
+      let diff = target - now;
+      if(diff <= 0){
+        document.getElementById('d').textContent = '00';
+        document.getElementById('h').textContent = '00';
+        document.getElementById('m').textContent = '00';
+        document.getElementById('s').textContent = '00';
+        return;
+      }
+      const days = Math.floor(diff / (1000*60*60*24));
+      diff %= (1000*60*60*24);
+      const hours = Math.floor(diff / (1000*60*60));
+      diff %= (1000*60*60);
+      const mins = Math.floor(diff / (1000*60));
+      diff %= (1000*60);
+      const secs = Math.floor(diff / 1000);
+      document.getElementById('d').textContent = pad(days);
+      document.getElementById('h').textContent = pad(hours);
+      document.getElementById('m').textContent = pad(mins);
+      document.getElementById('s').textContent = pad(secs);
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
